@@ -47,8 +47,7 @@ const Megamenu: StorefrontFunctionComponent = ({
   let navigatedMenus: any
 
   const getSelected = () => {
-    const path = location.pathname.split("/")
-    const pathName = "/"+path[path.length - 1]
+    const pathName = location.pathname
 
     filteredMenu?.map((element) => {
       const level1 = filterBy(filteredMenu, pathName)
@@ -88,8 +87,6 @@ const Megamenu: StorefrontFunctionComponent = ({
 
     getSelected()
 
-    console.log(navigatedMenus)
-
     if(navigatedMenus && navigatedMenus.length > 0 || (navigatedMenus && navigatedMenus?.firstLevel)) {
       sessionStorage.setItem("currentNavigation", JSON.stringify(navigatedMenus))
       navigatedMenus !== null && setSelectedMenus(navigatedMenus)
@@ -109,7 +106,13 @@ const Megamenu: StorefrontFunctionComponent = ({
                 <div
                   className={`${styles.firstMenu} mh3 flex-auto ${selectedMenus?.firstLevel === menuItem.__editorItemTitle
                     ? styles.firstLevelActive
-                    : ''}`}
+                    : ''}
+                    ${!selectedHoverMenus && selectedMenus?.firstLevel === menuItem.__editorItemTitle
+                      ? styles.firstLevelActive
+                      : ''}
+                    ${selectedHoverMenus?.firstLevel === menuItem.__editorItemTitle
+                      ? styles.firstLevelActive
+                      : ''}`}
                   id={`${menuItem.__editorItemTitle.trim().replace(/\s+/g, '').toLowerCase()}`}
                   onClick={() => {
                     const nav = {firstLevel: `${menuItem.__editorItemTitle}`}

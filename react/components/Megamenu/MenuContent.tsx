@@ -53,11 +53,11 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
                 </Link>
               </div>
               <div
-                className={`flex flex-wrap`}>
+                className={`${styles.thirdMenuWrapper}`}>
               {subMenu.thirdLevel &&
                 subMenu.thirdLevel.length > 0 &&
                 subMenu.thirdLevel.map((subsubCat: MegaMenuItem) => (
-                  <div className={`${subsubCat.__editorItemTitle} w-25 pb5 ${styles.thirdMenuItems} ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle && selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
+                  <div className={`${subsubCat.__editorItemTitle} pb3 ${styles.thirdMenuItems} ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle && selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
                     ? styles.thirdLevelActive
                     : ''}`}
                     onClick={() => {

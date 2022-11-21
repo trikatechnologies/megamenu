@@ -36,7 +36,7 @@ type MenuListProps = {
 }
 
 const MenuList: FC<MenuListProps> = (props: MenuListProps) => {
-  const { currentMenu, currentSubMenu, setCurrentSubMenu, selectedMenus, selectedHoverMenus, setSelectedHoverMenus } = props
+  const { currentMenu, setCurrentSubMenu, selectedMenus, selectedHoverMenus, setSelectedHoverMenus } = props
 
   return (
     <>
@@ -46,14 +46,6 @@ const MenuList: FC<MenuListProps> = (props: MenuListProps) => {
             (subMenu: MegaMenuItem) => (
               <div
                 className={`${styles.secondMenu} relative subCategory pv4 ph5
-                ${currentSubMenu?.__editorItemTitle === subMenu.__editorItemTitle
-                    ? 'bg-lightgrey br2'
-                    : ''
-                }
-                ${selectedMenus?.secondLevel === subMenu.__editorItemTitle
-                  ? 'bg-lightgrey br2'
-                    : ''
-                }
                 ${!selectedHoverMenus && selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle
                   ? styles.secondLevelActive
                   : ''}

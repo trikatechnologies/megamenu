@@ -1,6 +1,5 @@
 .megamenu {
-  background-color: #000000;
-  color: #ffffff;
+  color: #000000;
 }
 .dropdownContainer {}
 .thirdMenu {}
@@ -84,6 +83,9 @@
 
 /* thirdLevel */
 .thirdMenuItems {}
+.thirdMenuWrapper {
+  column-count: 3;
+}
 .thirdLevelLink {
   color: #000000;
   font-weight: bold;
@@ -111,9 +113,9 @@
 /* Promotional */
 .promotional {}
 .promotional .image {max-width: 100%;}
-.promotional .content { color: #000000;}
-.promotional .title { color: #000000;}
-.promotional .link { color: #000000;}
+.promotional .content { color: #000000; font-size: 0.875rem;}
+.promotional .title { color: #000000; font-size: 1rem;}
+.promotional .link { color: #000000; font-size: 0.875rem;}
 .promotional .link:hover {
   font-weight: bold;
 }
