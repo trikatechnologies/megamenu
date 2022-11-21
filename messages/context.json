@@ -1,0 +1,17 @@
+{
+  "admin/editor.Megamenu.title": "admin/editor.Megamenu.title",
+  "admin/editor.Megamenu.desc": "admin/editor.Megamenu.desc",
+  "admin/editor.Megamenu.hideCategories": "admin/editor.Megamenu.hideCategories",
+  "admin/editor.Megamenu.firstLevel": "admin/editor.Megamenu.firstLevel",
+  "admin/editor.Megamenu.secondLevel": "admin/editor.Megamenu.secondLevel",
+  "admin/editor.Megamenu.promoImage": "admin/editor.Megamenu.promoImage",
+  "admin/editor.Megamenu.promoImageAltText": "admin/editor.Megamenu.promoImageAltText",
+  "admin/editor.Megamenu.promoTitle": "admin/editor.Megamenu.promoTitle",
+  "admin/editor.Megamenu.promoContent": "admin/editor.Megamenu.promoContent",
+  "admin/editor.Megamenu.promoLinkText": "admin/editor.Megamenu.promoLinkText",
+  "admin/editor.Megamenu.promoLink": "admin/editor.Megamenu.promoLink",
+  "admin/editor.Megamenu.thirdLevel": "admin/editor.Megamenu.thirdLevel",
+  "admin/editor.Megamenu.fourthLevel": "admin/editor.Megamenu.fourthLevel",
+  "admin/editor.Megamenu.displayName": "admin/editor.Megamenu.displayName",
+  "admin/editor.Megamenu.link": "admin/editor.Megamenu.link"
+}

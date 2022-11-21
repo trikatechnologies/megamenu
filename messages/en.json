@@ -1,4 +1,17 @@
 {
-  "admin/test": "test",
-  "store/test": "test"
+  "admin/editor.Megamenu.title": "Megamenu",
+  "admin/editor.Megamenu.desc": "Megamenu Component",
+  "admin/editor.Megamenu.hideCategories": "Hide Categories(separate by commas)",
+  "admin/editor.Megamenu.firstLevel": "First Level Menu List",
+  "admin/editor.Megamenu.secondLevel": "Second Level Menu List",
+  "admin/editor.Megamenu.promoImage": "Promotional Image",
+  "admin/editor.Megamenu.promoImageAltText": "Promotional Alt Text",
+  "admin/editor.Megamenu.promoTitle": "Promotional Heading",
+  "admin/editor.Megamenu.promoContent": "Promotional Content",
+  "admin/editor.Megamenu.promoLinkText": "Promotional Link Text",
+  "admin/editor.Megamenu.promoLink": "Promotional Link/URL",
+  "admin/editor.Megamenu.thirdLevel": "Third Level Menu List",
+  "admin/editor.Megamenu.fourthLevel": "Fourth Level Menu List",
+  "admin/editor.Megamenu.displayName": "Menu Name",
+  "admin/editor.Megamenu.link": "Menu Link"
 }

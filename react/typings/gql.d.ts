@@ -1,15 +1,11 @@
+import type { DocumentNode } from 'graphql'
+
 declare module '*.gql' {
-  import { DocumentNode } from 'graphql'
-
   const Schema: DocumentNode
-
   export default Schema
 }
 
 declare module '*.graphql' {
-  import { DocumentNode } from 'graphql'
-
-  const schema: DocumentNode
-
-  export default schema
+  const Schema: DocumentNode
+  export default Schema
 }

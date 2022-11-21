@@ -1,0 +1,119 @@
+.megamenu {
+  background-color: #000000;
+  color: #ffffff;
+}
+.dropdownContainer {}
+.thirdMenu {}
+.fourthMenu {}
+
+.navigation {
+  padding: 0;
+}
+.dropdownWrapper {
+  background-color:#ffffff;
+}
+
+/* FirstLevel */
+.firstMenu {
+  margin: 0;
+}
+.firstMenu .firstMenuItems:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+.firstMenuItems {
+  display: block;
+  padding: 1rem;
+  color: #ffffff;
+}
+.firstMenu.firstLevelActive .firstMenuItems {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* SecondLevel */
+.secondMenu {
+  background-color: #ffffff;
+}
+.secondMenuItems {
+  color: #000000;
+}
+.secondMenuIcon :global(.vtex__rightArrow) {
+  stroke: #000000;
+}
+.secondMenu:hover .secondMenuItems {
+  color: #000000;
+}
+.secondMenu:hover .secondMenuIcon :global(.vtex__rightArrow) {
+  stroke: #000000;
+}
+.secondLevelActive {
+  background-color: #eeeeee;
+}
+.secondLevelActive .secondMenuItems {
+  color: #000000;
+}
+.secondLevelActive .secondMenuIcon :global(.vtex__rightArrow) {
+  stroke: #000000;
+}
+
+/* Only twoLevel */
+.secondLevelLink {
+  color: #000000;
+}
+.secondLevelLink:hover {
+  font-weight: bold;
+}
+.secondLevelLink.secondLevelLinkActive {
+  font-weight: bold;
+}
+
+/* ViewAll */
+.viewAllFirstLevel {
+  color: #000000;
+}
+.viewAllFirstLevel:hover {
+  font-weight: bold;
+}
+.viewAllSecondLevel {
+  color: #000000;
+}
+.viewAllSecondLevel:hover {
+  font-weight: bold;
+}
+
+/* thirdLevel */
+.thirdMenuItems {}
+.thirdLevelLink {
+  color: #000000;
+  font-weight: bold;
+}
+.thirdLevelLink:hover {
+  font-weight: bold;
+}
+.thirdLevelActive .thirdLevelLink.active {
+  font-weight: bold;
+}
+
+/* FourthLevel */
+.fourthMenuItems {}
+.fourthLevelLink {
+  font-size: 0.875rem;
+  color: #595959;
+}
+.fourthLevelLink:hover {
+  font-weight: bold;
+}
+.fourthLevelActive .fourthLevelLink.active {
+  font-weight: bold;
+}
+
+/* Promotional */
+.promotional {}
+.promotional .image {max-width: 100%;}
+.promotional .content { color: #000000;}
+.promotional .title { color: #000000;}
+.promotional .link { color: #000000;}
+.promotional .link:hover {
+  font-weight: bold;
+}
