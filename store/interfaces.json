@@ -1,0 +1,8 @@
+{
+  "megamenu": {
+    "component": "Megamenu"
+  },
+  "megamenu-mobile": {
+    "component": "MegamenuMobile"
+  }
+}
