@@ -35,7 +35,7 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
   return (
     <>
       {subMenu && (
-        <div className={`flex w-75 ph3`}>
+        <div className={`flex w-75 ph3 pb3`}>
           <div className={`flex-auto dn flex`}>
             <div
               className={`${styles.thirdMenu} ${

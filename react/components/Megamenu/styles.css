@@ -90,7 +90,11 @@
 }
 
 /* thirdLevel */
-.megamenu .thirdMenuItems {}
+.megamenu .thirdMenuItems {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
 .megamenu .thirdMenuWrapper {
   column-count: 3;
 }
