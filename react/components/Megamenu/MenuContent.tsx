@@ -35,14 +35,14 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
   return (
     <>
       {subMenu && (
-        <div className={`flex flex-auto w-75 pa3`}>
+        <div className={`flex w-75 ph3`}>
           <div className={`flex-auto dn flex`}>
             <div
-              className={`${styles.thirdMenu} ph5 pb5 ${
+              className={`${styles.thirdMenu} ${
                 subMenu.promotional.promoImage ? 'w-70' : 'w-100'
               }`}
             >
-              <div className={`pb5`}
+              {/* <div className={`pb5`}
                 onClick={() => {
                   const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`}
                   sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
@@ -51,13 +51,13 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
                 <Link to={subMenu.href} className={`black ${styles.viewAllSecondLevel}`}>
                   View All {subMenu.__editorItemTitle}
                 </Link>
-              </div>
+              </div> */}
               <div
                 className={`${styles.thirdMenuWrapper}`}>
               {subMenu.thirdLevel &&
                 subMenu.thirdLevel.length > 0 &&
                 subMenu.thirdLevel.map((subsubCat: MegaMenuItem) => (
-                  <div className={`${subsubCat.__editorItemTitle} pb3 ${styles.thirdMenuItems} ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle && selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
+                  <div className={`${subsubCat.__editorItemTitle} pt4 pb2 pl3 ${styles.thirdMenuItems} ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle && selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
                     ? styles.thirdLevelActive
                     : ''}`}
                     onClick={() => {
@@ -67,7 +67,7 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
                   >
                     <Link
                       to={subsubCat.href}
-                      className={`${styles.thirdLevelLink} t-semiBoldFont db no-underline pb2 ${selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
+                      className={`${styles.thirdLevelLink} t-semiBoldFont db no-underline ${selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
                         ? `${styles.active}`
                         : ''}`}
                     >

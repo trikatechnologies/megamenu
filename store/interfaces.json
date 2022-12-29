@@ -2,7 +2,7 @@
   "megamenu": {
     "component": "Megamenu"
   },
-  "megamenu-mobile": {
+  "megamenuMobile": {
     "component": "MegamenuMobile"
   }
 }

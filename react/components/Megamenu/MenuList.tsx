@@ -41,44 +41,46 @@ const MenuList: FC<MenuListProps> = (props: MenuListProps) => {
   return (
     <>
       {currentMenu?.secondLevel && currentMenu?.secondLevel.length > 0 && (
-        <div className={`flex-auto pa3 w-25`}>
-          {currentMenu.secondLevel.map(
-            (subMenu: MegaMenuItem) => (
-              <div
-                className={`${styles.secondMenu} relative subCategory pv4 ph5
-                ${!selectedHoverMenus && selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle
-                  ? styles.secondLevelActive
-                  : ''}
-                ${selectedHoverMenus?.firstLevel === currentMenu.__editorItemTitle && selectedHoverMenus?.secondLevel === subMenu.__editorItemTitle
-                  ? styles.secondLevelActive
-                  : ''}`
-                }
-                onMouseOver={() => {
-                  setCurrentSubMenu(subMenu)
-                  const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`}
-                  setSelectedHoverMenus(nav)
-                }}
-              >
-                <span className={`${styles.secondMenuItems} category no-underline db black`}>
-                  {subMenu.__editorItemTitle}
-                </span>
-                <span
-                  className={`${styles.secondMenuIcon} flex items-center absolute top-0 bottom-0 right-1`}
+        <div className={`w-25`}>
+          <div className={`ph3 ${styles.secondLevelList}`}>
+            {currentMenu.secondLevel.map(
+              (subMenu: MegaMenuItem) => (
+                <div
+                  className={`${styles.secondMenu} relative subCategory pv4 ph3
+                  ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle
+                    ? styles.secondLevelActive
+                    : ''}
+                  ${selectedHoverMenus?.firstLevel === currentMenu.__editorItemTitle && selectedHoverMenus?.secondLevel === subMenu.__editorItemTitle
+                    ? styles.secondLevelActive
+                    : ''}`
+                  }
+                  onMouseOver={() => {
+                    setCurrentSubMenu(subMenu)
+                    const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`}
+                    setSelectedHoverMenus(nav)
+                  }}
                 >
-                  <RightArrow />
-                </span>
-              </div>
-            )
-          )}
-          <div className={`pv3 ph5 mt5`}
-            onClick={() => {
-              const nav = {firstLevel: `${currentMenu.__editorItemTitle}`}
-              sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
-            }}
-          >
-            <Link to={currentMenu.href} className={`black ${styles.viewAllFirstLevel}`}>
-              View All {currentMenu.__editorItemTitle}
-            </Link>
+                  <Link to={subMenu.href} className={`${styles.secondMenuItems} category no-underline db black`}>
+                    {subMenu.__editorItemTitle}
+                  </Link>
+                  <span
+                    className={`${styles.secondMenuIcon} flex items-center absolute top-0 bottom-0 right-0`}
+                  >
+                    <RightArrow />
+                  </span>
+                </div>
+              )
+            )}
+            {/* <div className={`pv3 ph5 mt5`}
+              onClick={() => {
+                const nav = {firstLevel: `${currentMenu.__editorItemTitle}`}
+                sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
+              }}
+            >
+              <Link to={currentMenu.href} className={`black ${styles.viewAllFirstLevel}`}>
+                View All {currentMenu.__editorItemTitle}
+              </Link>
+            </div> */}
           </div>
         </div>
       )}

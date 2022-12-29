@@ -1,121 +1,183 @@
 .megamenu {
   color: #000000;
 }
-.dropdownContainer {}
-.thirdMenu {}
-.fourthMenu {}
+.megamenu .dropdownContainer {}
+.megamenu .thirdMenu {}
+.megamenu .fourthMenu {}
 
-.navigation {
+.megamenu .navigation {
   padding: 0;
 }
-.dropdownWrapper {
+.megamenu .dropdownWrapper {
   background-color:#ffffff;
+  z-index: 9;
 }
 
 /* FirstLevel */
-.firstMenu {
+.megamenu .firstMenu {
   margin: 0;
+  padding: 16px 8px;
+  flex: 1 1 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.firstMenu .firstMenuItems:hover {
-  background-color: #ffffff;
-  color: #000000;
-}
-.firstMenuItems {
+.megamenu .firstMenuItems {
   display: block;
-  padding: 1rem;
   color: #ffffff;
 }
-.firstMenu.firstLevelActive .firstMenuItems {
+.megamenu .firstMenu.firstLevelActive {
   background-color: #ffffff;
+}
+
+.megamenu .firstMenu.firstLevelActive .firstMenuItems {
   color: #000000;
 }
 
 /* SecondLevel */
-.secondMenu {
+.megamenu .secondLevelList {}
+.megamenu .secondMenu {
   background-color: #ffffff;
 }
-.secondMenuItems {
+.megamenu .secondMenuItems {
   color: #000000;
 }
-.secondMenuIcon :global(.vtex__rightArrow) {
+
+.megamenu .secondMenuIcon :global(.vtex__rightArrow) {
   stroke: #000000;
+  stroke-width: 3px;
 }
-.secondMenu:hover .secondMenuItems {
+.megamenu .secondMenu:hover .secondMenuItems {
   color: #000000;
 }
-.secondMenu:hover .secondMenuIcon :global(.vtex__rightArrow) {
+.megamenu .secondMenu:hover .secondMenuIcon :global(.vtex__rightArrow) {
   stroke: #000000;
 }
-.secondLevelActive {
+.megamenu .secondLevelActive {
   background-color: #eeeeee;
 }
-.secondLevelActive .secondMenuItems {
+.megamenu .secondLevelActive .secondMenuItems {
   color: #000000;
 }
-.secondLevelActive .secondMenuIcon :global(.vtex__rightArrow) {
+.megamenu .secondLevelActive .secondMenuIcon :global(.vtex__rightArrow) {
   stroke: #000000;
 }
 
 /* Only twoLevel */
-.secondLevelLink {
+.megamenu .secondLevelLink {
   color: #000000;
 }
-.secondLevelLink:hover {
+.megamenu .secondLevelLink:hover {
   font-weight: bold;
 }
-.secondLevelLink.secondLevelLinkActive {
+.megamenu .secondLevelLink.secondLevelLinkActive {
   font-weight: bold;
 }
 
 /* ViewAll */
-.viewAllFirstLevel {
+.megamenu .viewAllFirstLevel {
   color: #000000;
 }
-.viewAllFirstLevel:hover {
+.megamenu .viewAllFirstLevel:hover {
   font-weight: bold;
 }
-.viewAllSecondLevel {
+.megamenu .viewAllSecondLevel {
   color: #000000;
 }
-.viewAllSecondLevel:hover {
+.megamenu .viewAllSecondLevel:hover {
   font-weight: bold;
 }
 
 /* thirdLevel */
-.thirdMenuItems {}
-.thirdMenuWrapper {
+.megamenu .thirdMenuItems {}
+.megamenu .thirdMenuWrapper {
   column-count: 3;
 }
-.thirdLevelLink {
+.megamenu .thirdLevelLink {
   color: #000000;
   font-weight: bold;
 }
-.thirdLevelLink:hover {
+.megamenu .thirdLevelLink:hover {
   font-weight: bold;
 }
-.thirdLevelActive .thirdLevelLink.active {
+.megamenu .thirdLevelActive .thirdLevelLink.active {
   font-weight: bold;
 }
 
 /* FourthLevel */
-.fourthMenuItems {}
-.fourthLevelLink {
+.megamenu .fourthMenuItems {}
+.megamenu .fourthLevelLink {
   font-size: 0.875rem;
   color: #595959;
 }
-.fourthLevelLink:hover {
+.megamenu .fourthLevelLink:hover {
   font-weight: bold;
 }
-.fourthLevelActive .fourthLevelLink.active {
+.megamenu .fourthLevelActive .fourthLevelLink.active {
   font-weight: bold;
 }
 
 /* Promotional */
-.promotional {}
-.promotional .image {max-width: 100%;}
-.promotional .content { color: #000000; font-size: 0.875rem;}
-.promotional .title { color: #000000; font-size: 1rem;}
-.promotional .link { color: #000000; font-size: 0.875rem;}
-.promotional .link:hover {
+.megamenu .promotional {}
+.megamenu .promotional .image {max-width: 100%;}
+.megamenu .promotional .content { color: #000000; font-size: 0.875rem;}
+.megamenu .promotional .title { color: #000000; font-size: 1rem;}
+.megamenu .promotional .link { color: #000000; font-size: 0.875rem;}
+.megamenu .promotional .link:hover {
   font-weight: bold;
+}
+
+.megamenuMobile {}
+.megamenuMobile .menus {}
+.megamenuMobile .goBack {}
+.megamenuMobile .megamenuLinksMobile {
+  color: #000000;
+}
+.megamenuMobile .secondLevelMenu {}
+.megamenuMobile .thirdLevelMenu {}
+.megamenuMobile .fourthLevelMenu {}
+.megamenuMobile .rightIcon {}
+.megamenuMobile .secondMenuIcon :global(.vtex__rightArrow) {
+  stroke: #000000;
+  stroke-width: 3px;
+}
+.megamenuMobile .active .megamenuLinksMobile{
+  font-weight: bold;
+}
+.megamenuMobile .secondMenuIcon {
+  right: 10px;
+}
+.megamenuMobile .goBack .secondMenuIcon {
+  left: 5px;
+  right: unset;
+}
+.megamenuMobile .goBack.show {
+  border-bottom: none;
+}
+.megamenuMobile .show {
+  border-bottom: 1px solid #424242;
+  font-size: 20px;
+  margin: 0;
+  padding: 6px 24px 6px 12px;
+}
+.megamenuMobile .secondLevelMenu .show {
+  padding: 6px 24px 6px 18px;
+}
+.megamenuMobile .thirdLevelMenu .show {
+  padding: 6px 24px 6px 24px;
+}
+.megamenuMobile .show.active {
+  border-bottom: none;
+}
+.megamenuMobile .show.active .megamenuLinksMobile {
+  border-bottom: 2px solid;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }

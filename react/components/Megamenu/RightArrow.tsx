@@ -4,7 +4,7 @@ const RightArrow = () => {
   return (
     <>
       <svg
-        width="9"
+        width="16"
         height="16"
         viewBox="0 0 11 18"
         fill="none"

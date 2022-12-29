@@ -79,7 +79,7 @@ const Megamenu: StorefrontFunctionComponent = ({
   useEffect(() => {
     if (!currentMenu) setThirdSubMenu([])
 
-    const menus = currentMenu?.secondLevel.filter((items) => items.thirdLevel)
+    const menus = currentMenu?.secondLevel?.filter((items) => items.thirdLevel)
     setThirdSubMenu(menus)
 
     sessionStorage.removeItem("currentNavigation")
@@ -99,12 +99,12 @@ const Megamenu: StorefrontFunctionComponent = ({
   return (
     <>
       <div className={`${styles.megamenu} relative w-100`}>
-        <nav className={`${styles.navigation} flex items-center overflow-hidden overflow-x-auto pa5`}>
-          <div className={`flex justify-left`}>
-            <div className={`flex`}>
+        <nav className={`${styles.navigation} flex items-center overflow-hidden pa5`}>
+          <div className={`w-100`}>
+            <div className={`flex justify-between`}>
               {filteredMenu?.map((menuItem: MegaMenuItem) => (
                 <div
-                  className={`${styles.firstMenu} mh3 flex-auto ${selectedMenus?.firstLevel === menuItem.__editorItemTitle
+                  className={`${styles.firstMenu} mh3 ${selectedMenus?.firstLevel === menuItem.__editorItemTitle
                     ? styles.firstLevelActive
                     : ''}
                     ${!selectedHoverMenus && selectedMenus?.firstLevel === menuItem.__editorItemTitle
@@ -118,14 +118,15 @@ const Megamenu: StorefrontFunctionComponent = ({
                     const nav = {firstLevel: `${menuItem.__editorItemTitle}`}
                     sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
                   }}
+                  onMouseOver={() => {
+                    const nav = {firstLevel: `${menuItem.__editorItemTitle}`}
+                    setCurrentMenu(menuItem)
+                    setSelectedHoverMenus(nav)
+                  }}
                 >
                   <Link
                     to={menuItem.href}
-                    className={`${styles.firstMenuItems} department no-underline nowrap`}
-                    onMouseOver={() => {
-                      setCurrentMenu(menuItem)
-                      setSelectedHoverMenus(undefined)
-                    }}
+                    className={`${styles.firstMenuItems} department no-underline`}
                   >
                     {menuItem.__editorItemTitle}
                   </Link>
@@ -133,7 +134,7 @@ const Megamenu: StorefrontFunctionComponent = ({
               ))}
             </div>
             <div
-              className={`${styles.dropdownWrapper} absolute left-0 w-100 bg-white z-1 bt b--lightgrey`}
+              className={`${styles.dropdownWrapper} absolute left-0 w-100 bg-white z-1 b--lightgrey`}
               style={{ top: '100%' }}
               onMouseLeave={() => {
                 setCurrentMenu(undefined)
@@ -143,10 +144,10 @@ const Megamenu: StorefrontFunctionComponent = ({
             >
               {currentMenu?.secondLevel && currentMenu?.secondLevel.length > 0 ? (
                 <div
-                  className={`${styles.dropdownContainer} overflow-hidden overflow-y-auto flex-auto pa5 ${getNameSlug(
+                  className={`${styles.dropdownContainer} overflow-hidden overflow-y-auto flex-auto pv4 flex ${getNameSlug(
                     currentMenu.__editorItemTitle
                   )} flex`}
-                  style={{ maxHeight: '40vh' }}
+                  // style={{ height: '40vh' }}
                 >
                   {thirdSubMenu && thirdSubMenu.length === 0 && (
                     <MenuSecondLevelContent
