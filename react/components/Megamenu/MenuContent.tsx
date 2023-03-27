@@ -25,17 +25,18 @@ type MenuContentProps = {
   currentMenu: MegaMenuItem
   currentSubMenu?: MegaMenuItem
   selectedMenus: any
+  setSelectedHoverMenus: any
 }
 
 const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
-  const { currentMenu, currentSubMenu, selectedMenus } = props
+  const { currentMenu, currentSubMenu, selectedMenus, setSelectedHoverMenus } = props
   const selectedItem = currentMenu.secondLevel.filter((item) => item.__editorItemTitle === selectedMenus?.secondLevel)
   const subMenu = currentSubMenu ?? selectedItem[0] ?? currentMenu.secondLevel?.[0]
 
   return (
     <>
       {subMenu && (
-        <div className={`flex w-75 ph3 pb3`}>
+        <div className={`flex w-75 ph3 pb3 pl7 overflow-y-auto`} style={{ maxHeight: '60vh' }}>
           <div className={`flex-auto dn flex`}>
             <div
               className={`${styles.thirdMenu} ${
@@ -64,6 +65,10 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
                       const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`}
                       sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
                     }}
+                    onMouseOver={() => {
+                      const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`}
+                      setSelectedHoverMenus(nav)
+                    }}
                   >
                     <Link
                       to={subsubCat.href}
@@ -85,6 +90,10 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
                                 e.stopPropagation()
                                 const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`, fourthLevel: `${subsubsubCat.__editorItemTitle}`}
                                 sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
+                              }}
+                              onMouseOver={() => {
+                                const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`, fourthLevel: `${subsubsubCat.__editorItemTitle}`}
+                                setSelectedHoverMenus(nav)
                               }}
                             >
                               <Link

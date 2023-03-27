@@ -37,6 +37,7 @@
 
 /* SecondLevel */
 .megamenu .secondLevelList {}
+.megamenu .secondLevelListWrapper {}
 .megamenu .secondMenu {
   background-color: #ffffff;
 }

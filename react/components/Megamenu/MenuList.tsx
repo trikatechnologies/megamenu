@@ -41,12 +41,12 @@ const MenuList: FC<MenuListProps> = (props: MenuListProps) => {
   return (
     <>
       {currentMenu?.secondLevel && currentMenu?.secondLevel.length > 0 && (
-        <div className={`w-25`}>
+        <div className={`${styles.secondLevelListWrapper} w-25 overflow-y-auto`} style={{ maxHeight: '60vh' }}>
           <div className={`ph3 ${styles.secondLevelList}`}>
             {currentMenu.secondLevel.map(
               (subMenu: MegaMenuItem) => (
                 <div
-                  className={`${styles.secondMenu} relative subCategory pv4 ph3
+                  className={`${styles.secondMenu} relative subCategory pv3 ph3 pr5
                   ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle
                     ? styles.secondLevelActive
                     : ''}

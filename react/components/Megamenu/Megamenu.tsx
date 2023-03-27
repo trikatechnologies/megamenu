@@ -35,6 +35,7 @@ const Megamenu: StorefrontFunctionComponent = ({
   const [thirdSubMenu, setThirdSubMenu] = useState<MegaMenuItem[]>()
   const [selectedMenus, setSelectedMenus] = useState<any>()
   const [selectedHoverMenus, setSelectedHoverMenus] = useState<any>()
+  const [showOverlay, setShowOverlay] = useState<any>(false)
 
   const getNameSlug = (name: string) => {
     return name.trim().replace(/\s+/g, '').toLowerCase()
@@ -122,6 +123,11 @@ const Megamenu: StorefrontFunctionComponent = ({
                     const nav = {firstLevel: `${menuItem.__editorItemTitle}`}
                     setCurrentMenu(menuItem)
                     setSelectedHoverMenus(nav)
+                    setShowOverlay(true)
+                  }}
+                  onMouseLeave={() => {
+                    setShowOverlay(false)
+                    setSelectedHoverMenus(undefined)
                   }}
                 >
                   <Link
@@ -133,49 +139,55 @@ const Megamenu: StorefrontFunctionComponent = ({
                 </div>
               ))}
             </div>
-            <div
-              className={`${styles.dropdownWrapper} absolute left-0 w-100 bg-white z-1 b--lightgrey`}
-              style={{ top: '100%' }}
-              onMouseLeave={() => {
-                setCurrentMenu(undefined)
-                setCurrentSubMenu(undefined)
-                setSelectedHoverMenus(undefined)
-              }}
-            >
-              {currentMenu?.secondLevel && currentMenu?.secondLevel.length > 0 ? (
-                <div
-                  className={`${styles.dropdownContainer} overflow-hidden overflow-y-auto flex-auto pv4 flex ${getNameSlug(
-                    currentMenu.__editorItemTitle
-                  )} flex`}
-                  // style={{ height: '40vh' }}
-                >
-                  {thirdSubMenu && thirdSubMenu.length === 0 && (
-                    <MenuSecondLevelContent
-                      currentMenu={currentMenu}
-                      currentSubMenu={currentSubMenu}
-                      selectedMenus={selectedMenus}
-                    />
-                  )}
-                  {thirdSubMenu && thirdSubMenu.length > 0 && (
-                    <>
-                      <MenuList
-                        currentMenu={currentMenu}
-                        currentSubMenu={currentSubMenu}
-                        setCurrentSubMenu={setCurrentSubMenu}
-                        selectedMenus={selectedMenus}
-                        setSelectedHoverMenus={setSelectedHoverMenus}
-                        selectedHoverMenus={selectedHoverMenus}
-                      />
-                      <MenuContent
+            {showOverlay &&
+              <div
+                className={`${styles.dropdownWrapper} absolute left-0 w-100 bg-white z-1 b--lightgrey overflow-auto`}
+                style={{ top: '100%' }}
+                onMouseLeave={() => {
+                  setCurrentMenu(undefined)
+                  setCurrentSubMenu(undefined)
+                  setSelectedHoverMenus(undefined)
+                }}
+                onMouseOver={() => {
+                  setShowOverlay(true)
+                }}
+              >
+                {currentMenu?.secondLevel && currentMenu?.secondLevel.length > 0 ? (
+                  <div
+                    className={`${styles.dropdownContainer} overflow-hidden overflow-y-auto flex-auto pv4 flex ${getNameSlug(
+                      currentMenu.__editorItemTitle
+                    )} flex`}
+                    // style={{ height: '40vh' }}
+                  >
+                    {thirdSubMenu && thirdSubMenu.length === 0 && (
+                      <MenuSecondLevelContent
                         currentMenu={currentMenu}
                         currentSubMenu={currentSubMenu}
                         selectedMenus={selectedMenus}
                       />
-                    </>
-                  )}
-                </div>
-              ) : null}
-            </div>
+                    )}
+                    {thirdSubMenu && thirdSubMenu.length > 0 && (
+                      <>
+                        <MenuList
+                          currentMenu={currentMenu}
+                          currentSubMenu={currentSubMenu}
+                          setCurrentSubMenu={setCurrentSubMenu}
+                          selectedMenus={selectedMenus}
+                          setSelectedHoverMenus={setSelectedHoverMenus}
+                          selectedHoverMenus={selectedHoverMenus}
+                        />
+                        <MenuContent
+                          currentMenu={currentMenu}
+                          currentSubMenu={currentSubMenu}
+                          selectedMenus={selectedMenus}
+                          setSelectedHoverMenus={setSelectedHoverMenus}
+                        />
+                      </>
+                    )}
+                  </div>
+                ) : null}
+              </div>
+            }
           </div>
         </nav>
       </div>
