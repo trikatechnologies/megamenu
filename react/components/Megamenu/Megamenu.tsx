@@ -52,22 +52,22 @@ const Megamenu: StorefrontFunctionComponent = ({
 
     filteredMenu?.map((element) => {
       const level1 = filterBy(filteredMenu, pathName)
-      if(level1 && level1.length > 0) {
-        navigatedMenus = {firstLevel: level1[0].__editorItemTitle}
+      if (level1 && level1.length > 0) {
+        navigatedMenus = { firstLevel: level1[0].__editorItemTitle }
       } else {
         const level2 = element?.secondLevel && filterBy(element?.secondLevel, pathName)
-        if(level2 && level2.length > 0) {
-          navigatedMenus = {firstLevel: element.__editorItemTitle, secondLevel: level2[0].__editorItemTitle}
+        if (level2 && level2.length > 0) {
+          navigatedMenus = { firstLevel: element.__editorItemTitle, secondLevel: level2[0].__editorItemTitle }
         } else {
           element?.secondLevel?.map((elem) => {
             const level3 = elem?.thirdLevel && filterBy(elem?.thirdLevel, pathName)
-            if(level3 && level3.length > 0) {
-              navigatedMenus = {firstLevel: element.__editorItemTitle, secondLevel: elem.__editorItemTitle, thirdLevel: level3[0].__editorItemTitle}
+            if (level3 && level3.length > 0) {
+              navigatedMenus = { firstLevel: element.__editorItemTitle, secondLevel: elem.__editorItemTitle, thirdLevel: level3[0].__editorItemTitle }
             } else {
               elem?.thirdLevel?.map((ele) => {
                 const level4 = ele?.fourthLevel && filterBy(ele?.fourthLevel, pathName)
-                if(level4 && level4.length > 0) {
-                  navigatedMenus = {firstLevel: element.__editorItemTitle, secondLevel: elem.__editorItemTitle, thirdLevel: ele.__editorItemTitle, fourthLevel: level4[0].__editorItemTitle}
+                if (level4 && level4.length > 0) {
+                  navigatedMenus = { firstLevel: element.__editorItemTitle, secondLevel: elem.__editorItemTitle, thirdLevel: ele.__editorItemTitle, fourthLevel: level4[0].__editorItemTitle }
                 }
               })
             }
@@ -88,7 +88,7 @@ const Megamenu: StorefrontFunctionComponent = ({
 
     getSelected()
 
-    if(navigatedMenus && navigatedMenus.length > 0 || (navigatedMenus && navigatedMenus?.firstLevel)) {
+    if (navigatedMenus && navigatedMenus.length > 0 || (navigatedMenus && navigatedMenus?.firstLevel)) {
       sessionStorage.setItem("currentNavigation", JSON.stringify(navigatedMenus))
       navigatedMenus !== null && setSelectedMenus(navigatedMenus)
     } else {
@@ -99,7 +99,10 @@ const Megamenu: StorefrontFunctionComponent = ({
 
   return (
     <>
-      <div className={`${styles.megamenu} relative w-100`}>
+      <div className={`${styles.megamenu} relative w-100`}
+        onMouseLeave={() => {
+          setShowOverlay(false)
+        }}>
         <nav className={`${styles.navigation} flex items-center overflow-hidden pa5`}>
           <div className={`w-100`}>
             <div className={`flex justify-between`}>
@@ -116,17 +119,17 @@ const Megamenu: StorefrontFunctionComponent = ({
                       : ''}`}
                   id={`${menuItem.__editorItemTitle.trim().replace(/\s+/g, '').toLowerCase()}`}
                   onClick={() => {
-                    const nav = {firstLevel: `${menuItem.__editorItemTitle}`}
+                    const nav = { firstLevel: `${menuItem.__editorItemTitle}` }
                     sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
                   }}
                   onMouseOver={() => {
-                    const nav = {firstLevel: `${menuItem.__editorItemTitle}`}
+                    const nav = { firstLevel: `${menuItem.__editorItemTitle}` }
                     setCurrentMenu(menuItem)
                     setSelectedHoverMenus(nav)
                     setShowOverlay(true)
                   }}
                   onMouseLeave={() => {
-                    setShowOverlay(false)
+                    // setShowOverlay(false)
                     setSelectedHoverMenus(undefined)
                   }}
                 >
@@ -157,7 +160,7 @@ const Megamenu: StorefrontFunctionComponent = ({
                     className={`${styles.dropdownContainer} overflow-hidden overflow-y-auto flex-auto pv4 flex ${getNameSlug(
                       currentMenu.__editorItemTitle
                     )} flex`}
-                    // style={{ height: '40vh' }}
+                  // style={{ height: '40vh' }}
                   >
                     {thirdSubMenu && thirdSubMenu.length === 0 && (
                       <MenuSecondLevelContent
