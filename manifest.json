@@ -1,7 +1,7 @@
 {
   "vendor": "jefferspet",
   "name": "megamenu",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "title": "Megamenu",
   "description": "Megamenu app for configure menus manually",
   "builders": {
