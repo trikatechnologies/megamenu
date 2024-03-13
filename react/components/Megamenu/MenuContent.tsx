@@ -7,6 +7,9 @@ type MegaMenuItem = {
   active: boolean
   __editorItemTitle: string
   href: string
+  showAllMenus: boolean
+  columns?: string
+  columnWidth?: string
   secondLevel: MegaMenuItem[]
   promotional: Promotional
   thirdLevel: MegaMenuItem[]
@@ -36,12 +39,11 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
   return (
     <>
       {subMenu && (
-        <div className={`flex w-75 ph3 pb3 pl7 overflow-y-auto`} style={{ maxHeight: '60vh' }}>
+        <div className={`flex ${currentMenu?.showAllMenus ? 'w-100' : 'w-75'} ph3 pb3 pl7 overflow-y-auto`} style={{ maxHeight: '60vh' }}>
           <div className={`flex-auto dn flex`}>
             <div
-              className={`${styles.thirdMenu} ${
-                subMenu.promotional.promoImage ? 'w-70' : 'w-100'
-              }`}
+              className={`${styles.thirdMenu} ${subMenu.promotional.promoImage ? 'w-70' : 'w-100'
+                }`}
             >
               {/* <div className={`pb5`}
                 onClick={() => {
@@ -55,61 +57,61 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
               </div> */}
               <div
                 className={`${styles.thirdMenuWrapper}`}>
-              {subMenu.thirdLevel &&
-                subMenu.thirdLevel.length > 0 &&
-                subMenu.thirdLevel.map((subsubCat: MegaMenuItem) => (
-                  <div className={`${subsubCat.__editorItemTitle} pt4 pb2 pl3 ${styles.thirdMenuItems} ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle && selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
-                    ? styles.thirdLevelActive
-                    : ''}`}
-                    onClick={() => {
-                      const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`}
-                      sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
-                    }}
-                    onMouseOver={() => {
-                      const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`}
-                      setSelectedHoverMenus(nav)
-                    }}
-                  >
-                    <Link
-                      to={subsubCat.href}
-                      className={`${styles.thirdLevelLink} t-semiBoldFont db no-underline ${selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
-                        ? `${styles.active}`
-                        : ''}`}
+                {subMenu.thirdLevel &&
+                  subMenu.thirdLevel.length > 0 &&
+                  subMenu.thirdLevel.map((subsubCat: MegaMenuItem) => (
+                    <div className={`${subsubCat.__editorItemTitle} pt4 pb2 pl3 ${styles.thirdMenuItems} ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle && selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
+                      ? styles.thirdLevelActive
+                      : ''}`}
+                      onClick={() => {
+                        const nav = { firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}` }
+                        sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
+                      }}
+                      onMouseOver={() => {
+                        const nav = { firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}` }
+                        setSelectedHoverMenus(nav)
+                      }}
                     >
-                      {subsubCat.__editorItemTitle}
-                    </Link>
-                    <div className={`${styles.fourthMenu}`}>
-                      {subsubCat.fourthLevel &&
-                        subsubCat.fourthLevel.length > 0 &&
-                        subsubCat.fourthLevel.map(
-                          (subsubsubCat: MegaMenuItem) => (
-                            <div className={`${subsubCat.__editorItemTitle} ${styles.fourthMenuItems} ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle && selectedMenus?.thirdLevel === subsubCat.__editorItemTitle && selectedMenus?.fourthLevel === subsubsubCat.__editorItemTitle
-                              ? styles.fourthLevelActive
-                              : ''}`}
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`, fourthLevel: `${subsubsubCat.__editorItemTitle}`}
-                                sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
-                              }}
-                              onMouseOver={() => {
-                                const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`, fourthLevel: `${subsubsubCat.__editorItemTitle}`}
-                                setSelectedHoverMenus(nav)
-                              }}
-                            >
-                              <Link
-                                to={subsubsubCat.href}
-                                className={`${styles.fourthLevelLink} no-underline pt2 db ${selectedMenus?.fourthLevel === subsubsubCat.__editorItemTitle
-                                  ? `${styles.active}`
-                                  : 'black'}`}
+                      <Link
+                        to={subsubCat.href}
+                        className={`${styles.thirdLevelLink} t-semiBoldFont db no-underline ${selectedMenus?.thirdLevel === subsubCat.__editorItemTitle
+                          ? `${styles.active}`
+                          : ''}`}
+                      >
+                        {subsubCat.__editorItemTitle}
+                      </Link>
+                      <div className={`${styles.fourthMenu}`}>
+                        {subsubCat.fourthLevel &&
+                          subsubCat.fourthLevel.length > 0 &&
+                          subsubCat.fourthLevel.map(
+                            (subsubsubCat: MegaMenuItem) => (
+                              <div className={`${subsubCat.__editorItemTitle} ${styles.fourthMenuItems} ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle && selectedMenus?.thirdLevel === subsubCat.__editorItemTitle && selectedMenus?.fourthLevel === subsubsubCat.__editorItemTitle
+                                ? styles.fourthLevelActive
+                                : ''}`}
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  const nav = { firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`, fourthLevel: `${subsubsubCat.__editorItemTitle}` }
+                                  sessionStorage.setItem("currentNavigation", JSON.stringify(nav))
+                                }}
+                                onMouseOver={() => {
+                                  const nav = { firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`, thirdLevel: `${subsubCat.__editorItemTitle}`, fourthLevel: `${subsubsubCat.__editorItemTitle}` }
+                                  setSelectedHoverMenus(nav)
+                                }}
                               >
-                                {subsubsubCat.__editorItemTitle}
-                              </Link>
-                            </div>
-                          )
-                        )}
+                                <Link
+                                  to={subsubsubCat.href}
+                                  className={`${styles.fourthLevelLink} no-underline pt2 db ${selectedMenus?.fourthLevel === subsubsubCat.__editorItemTitle
+                                    ? `${styles.active}`
+                                    : 'black'}`}
+                                >
+                                  {subsubsubCat.__editorItemTitle}
+                                </Link>
+                              </div>
+                            )
+                          )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
             {subMenu.promotional.promoImage && (
@@ -138,7 +140,7 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
               </div>
             )}
           </div>
-        </div>
+        </div >
       )}
     </>
   )

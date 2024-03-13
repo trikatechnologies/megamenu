@@ -10,6 +10,9 @@ type MegaMenuItem = {
   active: boolean
   __editorItemTitle: string
   href: string
+  showAllMenus: boolean
+  columns?: string
+  columnWidth?: string
   secondLevel: MegaMenuItem[]
   promotional: Promotional
   thirdLevel: MegaMenuItem[]
@@ -162,31 +165,45 @@ const Megamenu: StorefrontFunctionComponent = ({
                     )} flex`}
                   // style={{ height: '40vh' }}
                   >
-                    {thirdSubMenu && thirdSubMenu.length === 0 && (
-                      <MenuSecondLevelContent
-                        currentMenu={currentMenu}
-                        currentSubMenu={currentSubMenu}
-                        selectedMenus={selectedMenus}
-                      />
-                    )}
-                    {thirdSubMenu && thirdSubMenu.length > 0 && (
-                      <>
-                        <MenuList
-                          currentMenu={currentMenu}
-                          currentSubMenu={currentSubMenu}
-                          setCurrentSubMenu={setCurrentSubMenu}
-                          selectedMenus={selectedMenus}
-                          setSelectedHoverMenus={setSelectedHoverMenus}
-                          selectedHoverMenus={selectedHoverMenus}
-                        />
+                    <>
+                      {currentMenu?.showAllMenus ? (
                         <MenuContent
                           currentMenu={currentMenu}
                           currentSubMenu={currentSubMenu}
                           selectedMenus={selectedMenus}
                           setSelectedHoverMenus={setSelectedHoverMenus}
                         />
-                      </>
-                    )}
+                      )
+                        :
+                        <>
+                          {thirdSubMenu && thirdSubMenu.length === 0 && (
+                            <MenuSecondLevelContent
+                              currentMenu={currentMenu}
+                              currentSubMenu={currentSubMenu}
+                              selectedMenus={selectedMenus}
+                            />
+                          )}
+                          {thirdSubMenu && thirdSubMenu.length > 0 && (
+                            <>
+                              <MenuList
+                                currentMenu={currentMenu}
+                                currentSubMenu={currentSubMenu}
+                                setCurrentSubMenu={setCurrentSubMenu}
+                                selectedMenus={selectedMenus}
+                                setSelectedHoverMenus={setSelectedHoverMenus}
+                                selectedHoverMenus={selectedHoverMenus}
+                              />
+                              <MenuContent
+                                currentMenu={currentMenu}
+                                currentSubMenu={currentSubMenu}
+                                selectedMenus={selectedMenus}
+                                setSelectedHoverMenus={setSelectedHoverMenus}
+                              />
+                            </>
+                          )}
+                        </>
+                      }
+                    </>
                   </div>
                 ) : null}
               </div>
@@ -222,6 +239,11 @@ Megamenu.schema = {
             default: '',
             title: 'admin/editor.Megamenu.link',
           },
+          showAllMenus: {
+            type: 'boolean',
+            default: false,
+            title: 'Hide Left Menu',
+          },
           secondLevel: {
             type: 'array',
             title: 'admin/editor.Megamenu.secondLevel',
@@ -235,6 +257,16 @@ Megamenu.schema = {
                   type: 'string',
                   default: '',
                   title: 'admin/editor.Megamenu.link',
+                },
+                columns: {
+                  type: 'string',
+                  default: '4',
+                  title: 'Number of Columns',
+                },
+                columnWidth: {
+                  type: 'string',
+                  default: '100%',
+                  title: 'Column Width',
                 },
                 thirdLevel: {
                   type: 'array',

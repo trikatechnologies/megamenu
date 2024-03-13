@@ -10,6 +10,7 @@ type MegaMenuItem = {
   active: boolean
   __editorItemTitle: string
   href: string
+  showAllMenus: boolean
   secondLevel: MegaMenuItem[]
   promotional: Promotional
   thirdLevel: MegaMenuItem[]
@@ -48,15 +49,15 @@ const MenuList: FC<MenuListProps> = (props: MenuListProps) => {
                 <div
                   className={`${styles.secondMenu} relative subCategory pv3 ph3 pr5
                   ${selectedMenus?.firstLevel === currentMenu.__editorItemTitle && selectedMenus?.secondLevel === subMenu.__editorItemTitle
-                    ? styles.secondLevelActive
-                    : ''}
+                      ? styles.secondLevelActive
+                      : ''}
                   ${selectedHoverMenus?.firstLevel === currentMenu.__editorItemTitle && selectedHoverMenus?.secondLevel === subMenu.__editorItemTitle
-                    ? styles.secondLevelActive
-                    : ''}`
+                      ? styles.secondLevelActive
+                      : ''}`
                   }
                   onMouseOver={() => {
                     setCurrentSubMenu(subMenu)
-                    const nav = {firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}`}
+                    const nav = { firstLevel: `${currentMenu.__editorItemTitle}`, secondLevel: `${subMenu.__editorItemTitle}` }
                     setSelectedHoverMenus(nav)
                   }}
                 >
