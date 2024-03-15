@@ -56,7 +56,7 @@ const MenuContent: FC<MenuContentProps> = (props: MenuContentProps) => {
                 </Link>
               </div> */}
               <div
-                className={`${styles.thirdMenuWrapper}`}>
+                className={`${styles.thirdMenuWrapper}`} style={{ 'columnCount': Number(subMenu.columns), 'width': subMenu.columnWidth }}>
                 {subMenu.thirdLevel &&
                   subMenu.thirdLevel.length > 0 &&
                   subMenu.thirdLevel.map((subsubCat: MegaMenuItem) => (
