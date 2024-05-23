@@ -35,7 +35,7 @@ const MegamenuMobile: StorefrontFunctionComponent = ({
             <div
               className={`relative pv2 ma3 ${toggleMenu.menu !== '' && toggleMenu.menu !== menuItem.__editorItemTitle ? styles.hide : styles.show} ${toggleMenu.menu === menuItem.__editorItemTitle && styles.active}`}
               onClick={() => {
-                toggleMenu.menu !== menuItem.__editorItemTitle
+                (toggleMenu.menu !== menuItem.__editorItemTitle && menuItem.secondLevel && menuItem.secondLevel.length > 1)
                   ? setToggleMenu((prevState) => ({
                       ...prevState,
                       menu: menuItem.__editorItemTitle,
@@ -47,7 +47,7 @@ const MegamenuMobile: StorefrontFunctionComponent = ({
             >
               <MenuListMobile
                 currentMenu={menuItem}
-                hasChildren={!!menuItem.secondLevel}
+                hasChildren={menuItem.secondLevel && menuItem.secondLevel.length > 1}
                 toggleMenu={toggleMenu.menu}
               />
             </div>
@@ -62,7 +62,7 @@ const MegamenuMobile: StorefrontFunctionComponent = ({
                     <div
                       className={`relative ma3 pa2 pl3 ${toggleMenu.menuItem1 !== '' && toggleMenu.menuItem1 !== subMenus.__editorItemTitle ? styles.hide : styles.show} ${toggleMenu.menuItem1 === subMenus.__editorItemTitle && styles.active}`}
                       onClick={() => {
-                        toggleMenu.menuItem1 !== subMenus.__editorItemTitle
+                        (toggleMenu.menuItem1 !== subMenus.__editorItemTitle && subMenus.thirdLevel && subMenus.thirdLevel.length > 1)
                           ? setToggleMenu((prevState) => ({
                               ...prevState,
                               menuItem1: subMenus.__editorItemTitle,
@@ -73,7 +73,7 @@ const MegamenuMobile: StorefrontFunctionComponent = ({
                     >
                       <MenuListMobile
                         currentMenu={subMenus}
-                        hasChildren={!!subMenus.thirdLevel}
+                        hasChildren={subMenus.thirdLevel && subMenus.thirdLevel.length > 1}
                         toggleMenu={toggleMenu.menuItem1}
                       />
                     </div>
@@ -82,14 +82,14 @@ const MegamenuMobile: StorefrontFunctionComponent = ({
                         toggleMenu.menuItem1 !== subMenus.__editorItemTitle ? 'dn' : ''
                       }`}
                     >
-                      {!!subMenus.thirdLevel &&
+                      {(subMenus.thirdLevel && subMenus.thirdLevel.length > 1) &&
                         subMenus.thirdLevel.map(
                           (subItems: MegaMenuItem) => (
                             <>
                               <div
                                 className={`relative ma3 pa2 pl5 ${toggleMenu.menuItem2 !== '' && toggleMenu.menuItem2 !== subItems.__editorItemTitle ? styles.hide : styles.show} ${toggleMenu.menuItem2 === subItems.__editorItemTitle && styles.active}`}
                                 onClick={() => {
-                                  toggleMenu.menuItem2 !== subItems.__editorItemTitle
+                                  (toggleMenu.menuItem2 !== subItems.__editorItemTitle && subMenus.fourthLevel && subMenus.fourthLevel.length > 1)
                                     ? setToggleMenu((prevState) => ({
                                         ...prevState,
                                         menuItem2: subItems.__editorItemTitle,
@@ -99,28 +99,9 @@ const MegamenuMobile: StorefrontFunctionComponent = ({
                               >
                                 <MenuListMobile
                                   currentMenu={subItems}
-                                  hasChildren={!!subItems.fourthLevel}
+                                  hasChildren={false}
                                   toggleMenu={toggleMenu.menuItem2}
                                 />
-                              </div>
-                              <div
-                                className={`${styles.fourthLevelMenu} ${
-                                  toggleMenu.menuItem2 !== subItems.__editorItemTitle
-                                    ? 'dn'
-                                    : ''
-                                }`}
-                              >
-                                {!!subItems.fourthLevel &&
-                                  subItems.fourthLevel.map(
-                                    (lastlevel: MegaMenuItem) => (
-                                      <div className={`ma3 pa2 pl6`}>
-                                        <MenuListMobile
-                                          currentMenu={lastlevel}
-                                          hasChildren={false}
-                                        />
-                                      </div>
-                                    )
-                                  )}
                               </div>
                             </>
                           )
@@ -187,24 +168,7 @@ MegamenuMobile.schema = {
                         type: 'string',
                         default: '',
                         title: 'admin/editor.Megamenu.link',
-                      },
-                      fourthLevel: {
-                        type: 'array',
-                        title: 'admin/editor.Megamenu.fourthLevel',
-                        items: {
-                          properties: {
-                            __editorItemTitle: {
-                              title: 'admin/editor.Megamenu.displayName',
-                              type: 'string',
-                            },
-                            href: {
-                              type: 'string',
-                              default: '',
-                              title: 'admin/editor.Megamenu.link',
-                            },
-                          },
-                        },
-                      },
+                      }
                     },
                   },
                 },

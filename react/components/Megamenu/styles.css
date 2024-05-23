@@ -27,6 +27,7 @@
   display: block;
   color: #ffffff;
 }
+.megamenu .firstMenuItemsHighlighted {}
 .megamenu .firstMenu.firstLevelActive {
   background-color: #ffffff;
 }
@@ -36,7 +37,10 @@
 }
 
 /* SecondLevel */
-.megamenu .secondLevelList {}
+.megamenu .secondLevelList {
+  display: flex;
+  justify-content: space-around;
+}
 .megamenu .secondLevelListWrapper {}
 .megamenu .secondMenu {
   background-color: #ffffff;
@@ -49,18 +53,11 @@
   stroke: #000000;
   stroke-width: 3px;
 }
-.megamenu .secondMenu:hover .secondMenuItems {
-  color: #000000;
-}
+
 .megamenu .secondMenu:hover .secondMenuIcon :global(.vtex__rightArrow) {
   stroke: #000000;
 }
-.megamenu .secondLevelActive {
-  background-color: #eeeeee;
-}
-.megamenu .secondLevelActive .secondMenuItems {
-  color: #000000;
-}
+
 .megamenu .secondLevelActive .secondMenuIcon :global(.vtex__rightArrow) {
   stroke: #000000;
 }
@@ -92,12 +89,12 @@
 
 /* thirdLevel */
 .megamenu .thirdMenuItems {
-  display: inline-block;
   width: 100%;
   vertical-align: top;
+  padding-top: 0.4rem;
 }
 .megamenu .thirdMenuWrapper {
-  column-count: 3;
+  column-count: 1;
 }
 .megamenu .thirdLevelLink {
   color: #000000;
@@ -110,29 +107,13 @@
   font-weight: bold;
 }
 
-/* FourthLevel */
-.megamenu .fourthMenuItems {}
-.megamenu .fourthLevelLink {
-  font-size: 0.875rem;
-  color: #595959;
-}
-.megamenu .fourthLevelLink:hover {
-  font-weight: bold;
-}
-.megamenu .fourthLevelActive .fourthLevelLink.active {
-  font-weight: bold;
-}
-
 /* Promotional */
 .megamenu .promotional {}
-.megamenu .promotional .image {max-width: 100%;}
-.megamenu .promotional .content { color: #000000; font-size: 0.875rem;}
-.megamenu .promotional .title { color: #000000; font-size: 1rem;}
-.megamenu .promotional .link { color: #000000; font-size: 0.875rem;}
-.megamenu .promotional .link:hover {
-  font-weight: bold;
+.megamenu .image {
+  width: 100%;
+  max-height: 15vh;
+  object-fit: fill;
 }
-
 .megamenuMobile {}
 .megamenuMobile .menus {}
 .megamenuMobile .goBack {}
@@ -141,15 +122,12 @@
 }
 .megamenuMobile .secondLevelMenu {}
 .megamenuMobile .thirdLevelMenu {}
-.megamenuMobile .fourthLevelMenu {}
 .megamenuMobile .rightIcon {}
 .megamenuMobile .secondMenuIcon :global(.vtex__rightArrow) {
   stroke: #000000;
   stroke-width: 3px;
 }
-.megamenuMobile .active .megamenuLinksMobile{
-  font-weight: bold;
-}
+
 .megamenuMobile .secondMenuIcon {
   right: 10px;
 }
@@ -176,7 +154,7 @@
   border-bottom: none;
 }
 .megamenuMobile .show.active .megamenuLinksMobile {
-  border-bottom: 2px solid;
+  border-bottom: 1px solid;
 }
 
 .show {

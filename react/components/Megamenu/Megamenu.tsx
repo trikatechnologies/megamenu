@@ -10,20 +10,14 @@ type MegaMenuItem = {
   active: boolean
   __editorItemTitle: string
   href: string
-  showAllMenus: boolean
-  columns?: string
-  columnWidth?: string
+  styles:string
   secondLevel: MegaMenuItem[]
   promotional: Promotional
   thirdLevel: MegaMenuItem[]
-  fourthLevel: MegaMenuItem[]
 }
 type Promotional = {
   promoImage: string
   promoImageAltText: string
-  promoTitle: string
-  promoContent: string
-  promoLinkText: string
   promoLink: string
 }
 
@@ -66,13 +60,6 @@ const Megamenu: StorefrontFunctionComponent = ({
             const level3 = elem?.thirdLevel && filterBy(elem?.thirdLevel, pathName)
             if (level3 && level3.length > 0) {
               navigatedMenus = { firstLevel: element.__editorItemTitle, secondLevel: elem.__editorItemTitle, thirdLevel: level3[0].__editorItemTitle }
-            } else {
-              elem?.thirdLevel?.map((ele) => {
-                const level4 = ele?.fourthLevel && filterBy(ele?.fourthLevel, pathName)
-                if (level4 && level4.length > 0) {
-                  navigatedMenus = { firstLevel: element.__editorItemTitle, secondLevel: elem.__editorItemTitle, thirdLevel: ele.__editorItemTitle, fourthLevel: level4[0].__editorItemTitle }
-                }
-              })
             }
           })
         }
@@ -111,15 +98,20 @@ const Megamenu: StorefrontFunctionComponent = ({
             <div className={`flex justify-between`}>
               {filteredMenu?.map((menuItem: MegaMenuItem) => (
                 <div
-                  className={`${styles.firstMenu} mh3 ${selectedMenus?.firstLevel === menuItem.__editorItemTitle
-                    ? styles.firstLevelActive
-                    : ''}
+                  className={`${styles.firstMenu} mh3
+                      ${selectedMenus?.firstLevel === menuItem.__editorItemTitle
+                      ? styles.firstLevelActive
+                      : ''}
                     ${!selectedHoverMenus && selectedMenus?.firstLevel === menuItem.__editorItemTitle
                       ? styles.firstLevelActive
                       : ''}
                     ${selectedHoverMenus?.firstLevel === menuItem.__editorItemTitle
                       ? styles.firstLevelActive
-                      : ''}`}
+                      : ''}
+                   ${menuItem.styles === 'styleSFirstLevelHighlighted'
+                    ? `${styles.firstMenuItemsHighlighted}`
+                    :''}
+                    `}
                   id={`${menuItem.__editorItemTitle.trim().replace(/\s+/g, '').toLowerCase()}`}
                   onClick={() => {
                     const nav = { firstLevel: `${menuItem.__editorItemTitle}` }
@@ -149,33 +141,16 @@ const Megamenu: StorefrontFunctionComponent = ({
               <div
                 className={`${styles.dropdownWrapper} absolute left-0 w-100 bg-white z-1 b--lightgrey overflow-auto`}
                 style={{ top: '100%' }}
-                onMouseLeave={() => {
-                  setCurrentMenu(undefined)
-                  setCurrentSubMenu(undefined)
-                  setSelectedHoverMenus(undefined)
-                }}
-                onMouseOver={() => {
-                  setShowOverlay(true)
-                }}
+
               >
                 {currentMenu?.secondLevel && currentMenu?.secondLevel.length > 0 ? (
+                  <>
                   <div
                     className={`${styles.dropdownContainer} overflow-hidden overflow-y-auto flex-auto pv4 flex ${getNameSlug(
                       currentMenu.__editorItemTitle
                     )} flex`}
-                  // style={{ height: '40vh' }}
                   >
                     <>
-                      {currentMenu?.showAllMenus ? (
-                        <MenuContent
-                          currentMenu={currentMenu}
-                          currentSubMenu={currentSubMenu}
-                          selectedMenus={selectedMenus}
-                          setSelectedHoverMenus={setSelectedHoverMenus}
-                        />
-                      )
-                        :
-                        <>
                           {thirdSubMenu && thirdSubMenu.length === 0 && (
                             <MenuSecondLevelContent
                               currentMenu={currentMenu}
@@ -193,18 +168,17 @@ const Megamenu: StorefrontFunctionComponent = ({
                                 setSelectedHoverMenus={setSelectedHoverMenus}
                                 selectedHoverMenus={selectedHoverMenus}
                               />
-                              <MenuContent
-                                currentMenu={currentMenu}
-                                currentSubMenu={currentSubMenu}
-                                selectedMenus={selectedMenus}
-                                setSelectedHoverMenus={setSelectedHoverMenus}
-                              />
                             </>
                           )}
-                        </>
-                      }
                     </>
                   </div>
+                  <MenuContent
+                  currentMenu={currentMenu}
+                  currentSubMenu={currentSubMenu}
+                  selectedMenus={selectedMenus}
+                  setSelectedHoverMenus={setSelectedHoverMenus}
+                  />
+                  </>
                 ) : null}
               </div>
             }
@@ -239,10 +213,15 @@ Megamenu.schema = {
             default: '',
             title: 'admin/editor.Megamenu.link',
           },
-          showAllMenus: {
-            type: 'boolean',
-            default: false,
-            title: 'Hide Left Menu',
+          styles: {
+            type: 'string',
+            title: 'admin/editor.Megamenu.style',
+            enum: ['styleSFirstLevel', 'styleSFirstLevelHighlighted'],
+            enumNames: [
+              'admin/editor.Megamenu.styleSFirstLevel',
+              'admin/editor.Megamenu.styleSFirstLevelHighlighted',
+            ],
+            default: 'styleSFirstLevel',
           },
           secondLevel: {
             type: 'array',
@@ -258,16 +237,6 @@ Megamenu.schema = {
                   default: '',
                   title: 'admin/editor.Megamenu.link',
                 },
-                columns: {
-                  type: 'string',
-                  default: '4',
-                  title: 'Number of Columns',
-                },
-                columnWidth: {
-                  type: 'string',
-                  default: '100%',
-                  title: 'Column Width',
-                },
                 thirdLevel: {
                   type: 'array',
                   title: 'admin/editor.Megamenu.thirdLevel',
@@ -282,68 +251,43 @@ Megamenu.schema = {
                         default: '',
                         title: 'admin/editor.Megamenu.link',
                       },
-                      fourthLevel: {
-                        type: 'array',
-                        title: 'admin/editor.Megamenu.fourthLevel',
-                        items: {
-                          properties: {
-                            __editorItemTitle: {
-                              title: 'admin/editor.Megamenu.displayName',
-                              type: 'string',
-                            },
-                            href: {
-                              type: 'string',
-                              default: '',
-                              title: 'admin/editor.Megamenu.link',
-                            },
-                          },
-                        },
-                      },
+                      styles: {
+                        type: 'string',
+                        title: 'admin/editor.Megamenu.style',
+                        enum: ['styleSecondLevel', 'styleThirdLevel'],
+                        enumNames: [
+                          'admin/editor.Megamenu.styleSecondLevel',
+                          'admin/editor.Megamenu.styleThirdLevel',
+                        ],
+                        default: 'styleThirdLevel',
+                      }
                     },
                   },
                 },
-                promotional: {
-                  type: 'object',
-                  title: 'admin/editor.Megamenu.secondLevel',
-                  properties: {
-                    promoImage: {
-                      type: 'string',
-                      default: '',
-                      title: 'admin/editor.Megamenu.promoImage',
-                      widget: {
-                        'ui:widget': 'image-uploader',
-                      },
-                    },
-                    promoImageAltText: {
-                      type: 'string',
-                      default: '',
-                      title: 'admin/editor.Megamenu.promoImageAltText',
-                    },
-                    promoTitle: {
-                      type: 'string',
-                      default: '',
-                      title: 'admin/editor.Megamenu.promoTitle',
-                    },
-                    promoContent: {
-                      type: 'string',
-                      default: '',
-                      title: 'admin/editor.Megamenu.promoContent',
-                      widget: {
-                        'ui:widget': 'textarea',
-                      },
-                    },
-                    promoLinkText: {
-                      type: 'string',
-                      default: '',
-                      title: 'admin/editor.Megamenu.promoLinkText',
-                    },
-                    promoLink: {
-                      type: 'string',
-                      default: '',
-                      title: 'admin/editor.Megamenu.promoLink',
-                    },
-                  },
+              },
+            },
+          },
+          promotional: {
+            type: 'object',
+            title: 'admin/editor.Megamenu.secondLevel',
+            properties: {
+              promoImage: {
+                type: 'string',
+                default: '',
+                title: 'admin/editor.Megamenu.promoImage',
+                widget: {
+                  'ui:widget': 'image-uploader',
                 },
+              },
+              promoImageAltText: {
+                type: 'string',
+                default: '',
+                title: 'admin/editor.Megamenu.promoImageAltText',
+              },
+              promoLink: {
+                type: 'string',
+                default: '',
+                title: 'admin/editor.Megamenu.promoLink',
               },
             },
           },
