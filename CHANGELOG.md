@@ -6,8 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
-## [0.0.11] - 2024-05-24
+### Changed
+-Every Second level creates a new column
+-Possible to change the style of level 3 to appear like like 2.
+-Marketing image displayed per Level 1
+-Styling
+-Removed Level 4
+### Fixed
+-FIxed Mobile bugs
 
 ## [0.0.10] - 2024-03-15
 
