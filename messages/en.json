@@ -6,12 +6,15 @@
   "admin/editor.Megamenu.secondLevel": "Second Level Menu List",
   "admin/editor.Megamenu.promoImage": "Promotional Image",
   "admin/editor.Megamenu.promoImageAltText": "Promotional Alt Text",
-  "admin/editor.Megamenu.promoTitle": "Promotional Heading",
-  "admin/editor.Megamenu.promoContent": "Promotional Content",
-  "admin/editor.Megamenu.promoLinkText": "Promotional Link Text",
   "admin/editor.Megamenu.promoLink": "Promotional Link/URL",
   "admin/editor.Megamenu.thirdLevel": "Third Level Menu List",
   "admin/editor.Megamenu.fourthLevel": "Fourth Level Menu List",
   "admin/editor.Megamenu.displayName": "Menu Name",
-  "admin/editor.Megamenu.link": "Menu Link"
+  "admin/editor.Megamenu.link": "Menu Link",
+  "admin/editor.Megamenu.style": "Style",
+  "admin/editor.Megamenu.styleSecondLevel": "Second Level",
+  "admin/editor.Megamenu.styleThirdLevel": "Third Level",
+  "admin/editor.Megamenu.styleSFirstLevel": "First Level",
+  "admin/editor.Megamenu.styleSFirstLevelHighlighted": "First Level Highlighted"
+
 }

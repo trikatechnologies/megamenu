@@ -11,7 +11,6 @@ type MegaMenuItem = {
   href: string
   secondLevel: MegaMenuItem[]
   thirdLevel: MegaMenuItem[]
-  fourthLevel: MegaMenuItem[]
 }
 
 type MenuListProps = {

@@ -10,14 +10,10 @@ type MegaMenuItem = {
   secondLevel: MegaMenuItem[]
   promotional: Promotional
   thirdLevel: MegaMenuItem[]
-  fourthLevel: MegaMenuItem[]
 }
 type Promotional = {
   promoImage: string
   promoImageAltText: string
-  promoTitle: string
-  promoContent: string
-  promoLinkText: string
   promoLink: string
 }
 
